@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit <%= knife.name %></title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-right: 2rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            
+            position: relative;
+        }
+
+        
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        
+
+        /* Heading */
+        .page-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .knife-name {
+            color: #e74c3c;
+            
+        }
+
+        /* Form Styles */
+        .edit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        input, select, textarea {
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            font-family: inherit;
+        }
+
+        
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Button Styles */
+        .submit-btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            
+        }
+
+        
+
+        
+
+    </style>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    
+    <main>
+        <div class="form-container">
+            <h1 class="page-title">Edit <span class="knife-name">'<%= knife.name %>'</span></h1>
+            <form class="edit-form" action="/users/<%= user._id %>/knives/<%= knife._id %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <label for="name">Knife name:</label>
+                    <input type="text" name="name" id="name" value="<%= knife.name %>">
+                </div>
+                <div class="form-group">
+                    <label for="material">Material:</label>
+                    <input type="text" name="material" id="material" value="<%= knife.material %>">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea name="description" id="description"><%= knife.description %></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category">
+                        <option value="combat-knife" <%=knife.category==="combat-knife" ? "selected" : "" %>>Combat knife</option>
+                        <option value="kitchen-knife" <%=knife.category==="kitchen-knife" ? "selected" : "" %>>Kitchen knife</option>
+                        <option value="survival-knife" <%=knife.category==="survival-knife" ? "selected" : "" %>>Survival knife</option>
+                        <option value="throwing-knife" <%=knife.category==="throwing-knife" ? "selected" : "" %>>Throwing knife</option>
+                        <option value="automatic-knife" <%=knife.category==="automatic-knife" ? "selected" : "" %>>Automatic knife</option>
+                        <option value="hunting-knife" <%=knife.category==="hunting-knife" ? "selected" : "" %>>Hunting knife</option>
+                    </select>
+                </div>
+                <button class="submit-btn" type="submit">Update knife</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

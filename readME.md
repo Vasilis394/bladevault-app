@@ -4,7 +4,7 @@ My app:
 - signing in would take me to the user homepage, containing sign out and knives section
 - knives route would be a list of knives
  would have option to add a new knife, which leads to new route for knife name, description, material and category, saved to user
-- would have edit and delete option for each knife, later saved to user
+- only the owner would be able edit and delete each knife, later saved to user
 
 ## Wireframe and ERD 
 

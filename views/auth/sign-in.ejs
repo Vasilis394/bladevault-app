@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
+  <style>
+    /* Reset and base styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Navigation Styles */
+    nav {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #2c3e50;
+        font-weight: 600;
+        margin-right: 2rem;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        position: relative;
+    }
+
+   
+    
+
+    
+
+    /* Main Content */
+    main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    /* Sign In Container */
+    .signin-container {
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        width: 100%;
+        max-width: 500px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    
+
+    /* Heading */
+    .signin-title {
+        text-align: center;
+        color: #2c3e50;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, #e74c3c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Form Styles */
+    .signin-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    label {
+        color: #2c3e50;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    input {
+        padding: 1rem;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+    }
+
+   
+
+    /* Button Styles */
+    .submit-btn {
+        background: linear-gradient(45deg, #e74c3c);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        
+        margin-top: 1rem;
+        
+    }
+
+    
+
+    
+  </style>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+  
+  <main>
+    <div class="signin-container">
+      <h1 class="signin-title">Sign in</h1>
+      <form class="signin-form" action="/auth/sign-in" method="POST">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" required />
+        </div>
+        <button class="submit-btn" type="submit">Sign in</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

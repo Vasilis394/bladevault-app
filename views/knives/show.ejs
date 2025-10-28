@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= knife.name %></title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-right: 2rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            
+            position: relative;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        /* Knife Details Container */
+        .knife-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        
+
+        /* Heading */
+        .knife-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Details Section */
+        .details-section {
+            margin-bottom: 2rem;
+        }
+
+        .detail-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            
+        }
+
+        .detail-label {
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .detail-value {
+            color: #6c757d;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .description-value {
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        /* Actions Section */
+        .actions-section {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-edit {
+            background: linear-gradient(45deg, #3498db);
+            color: white;
+            
+        }
+
+        
+
+        .btn-delete {
+            background: linear-gradient(45deg, #c0392b);
+            color: white;
+            
+        }
+
+        
+
+        
+    </style>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    
+    <main>
+        <div class="knife-container">
+            <h1 class="knife-title"><%= knife.name %></h1>
+
+            <section class="details-section">
+                <div class="detail-item">
+                    <span class="detail-label">Category:</span>
+                    <span class="detail-value"><%= knife.category %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Material:</span>
+                    <span class="detail-value"><%= knife.material %></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Description:</span>
+                    <p class="detail-value description-value"><%= knife.description %></p>
+                </div>
+            </section>
+
+            <section class="actions-section">
+                <a class="btn btn-edit" href="/users/<%= user._id %>/knives/<%= knife._id %>/edit">EDIT</a>
+
+                <form action="/users/<%= user._id %>/knives/<%= knife._id %>?_method=DELETE" method="POST" style="margin: 0;">
+                    <button class="btn btn-delete" type="submit">DELETE</button>
+                </form>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

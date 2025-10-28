@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knife Collection</title>
+    <link rel="stylesheet" href="./styles.css">
+
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-right: 2rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        
+        
+
+       
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 73, 94, 0.9) 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Content Section */
+        .content-section {
+            margin-bottom: 4rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            
+            position: relative;
+            overflow: hidden;
+        }
+
+        
+
+        
+
+        .info-card h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .info-card p {
+            color: #7f8c8d;
+            line-height: 1.7;
+        }
+
+        /* Features Section */
+        .features {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .features h2 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        
+        
+
+        .feature h3 {
+            color: #e74c3c;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feature p {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        
+
+       
+    </style>
+</head>
+<body>
+    <%- include('./partials/_navbar.ejs') %>
+    
+    <main class="container">
+        <header class="hero">
+            <h1 class="hero-title">The Art of Knives</h1>
+            <p class="hero-subtitle">Essential tools for cooking, crafting, and collecting</p>
+        </header>
+
+        <section class="content-section">
+            <div class="info-grid">
+                <div class="info-card">
+                    <h2>Kitchen Knives</h2>
+                    <p>The heart of every kitchen. From chef's knives to paring knives, each serves a specific purpose in food preparation.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h2>Utility Knives</h2>
+                    <p>Versatile tools for everyday tasks. Perfect for various cutting needs around the house and workshop.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h2>Collector's Items</h2>
+                    <p>Beautifully crafted knives that showcase the artistry and skill of bladesmiths from around the world.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Why Knives Matter</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>Precision</h3>
+                    <p>Sharp, well-maintained knives provide clean cuts and better control</p>
+                </div>
+                <div class="feature">
+                    <h3>Safety</h3>
+                    <p>Proper knives reduce the risk of accidents compared to dull blades</p>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    
+</body>
+</html>
