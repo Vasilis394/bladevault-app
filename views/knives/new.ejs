@@ -123,6 +123,18 @@
             resize: vertical;
         }
 
+        .image-preview {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .image-preview img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 8px;
+            
+        }
+
         /* Button Styles */
         .submit-btn {
             background: linear-gradient(45deg, #e74c3c);
@@ -149,7 +161,7 @@
     <main>
         <div class="form-container">
             <h1 class="page-title">Add new knife</h1>
-            <form class="knife-form" action="/users/<%= user._id %>/knives" method="POST">
+            <form class="knife-form" action="/users/<%= user._id %>/knives" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Knife name:</label>
                     <input type="text" name="name" id="name" required/>
@@ -174,10 +186,36 @@
                     <textarea name="description" id="description"></textarea>
                 </div>
 
+                <div class="form-group">
+                    <label for="image">Knife Image:</label>
+                    <input type="file" name="image" id="image" accept="image/*" class="file-input" />
+                    <div class="image-preview" id="imagePreview"></div>
+                </div>
+
                 <button class="submit-btn" type="submit">Add knife</button>
             </form>
         </div>
     </main>
+
+    <script>
+        // Image preview functionality
+        document.getElementById('image').addEventListener('change', function(e) {
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = '';
+            
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    preview.appendChild(img);
+                }
+                
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    </script>
 </body>
 
 </html>

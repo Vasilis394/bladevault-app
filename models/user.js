@@ -14,7 +14,9 @@ const knifeSchema = mongoose.Schema({
     enum: ["hunting-knife", "combat-knife", "kitchen-knife", "survival-knife", "throwing-knife", "automatic-knife"],
     required: true
     },
-    description: String
+    description: String,
+     image: String, //image URL
+    imagePublicId: String //for cloudinary deletion
 });
 
 const userSchema = mongoose.Schema({

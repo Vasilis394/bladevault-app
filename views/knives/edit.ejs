@@ -138,7 +138,23 @@
             
         }
 
+        .current-image {
+            margin-top: 1rem;
+            text-align: center;
+        }
         
+        .current-image img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-note {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-style: italic;
+        }
 
         
 
@@ -150,7 +166,7 @@
     <main>
         <div class="form-container">
             <h1 class="page-title">Edit <span class="knife-name">'<%= knife.name %>'</span></h1>
-            <form class="edit-form" action="/users/<%= user._id %>/knives/<%= knife._id %>?_method=PUT" method="POST">
+            <form class="edit-form" action="/users/<%= user._id %>/knives/<%= knife._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Knife name:</label>
                     <input type="text" name="name" id="name" value="<%= knife.name %>">
@@ -174,9 +190,46 @@
                         <option value="hunting-knife" <%=knife.category==="hunting-knife" ? "selected" : "" %>>Hunting knife</option>
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="image">Update Knife Image:</label>
+                    <input type="file" name="image" id="image" accept="image/*" class="file-input" />
+                    <p class="image-note">Leave empty to keep current image</p>
+                    
+                    <% if (knife.image) { %>
+                        <div class="current-image">
+                            <p>Current Image:</p>
+                            <img src="<%= knife.image %>" alt="<%= knife.name %>" />
+                        </div>
+                    <% } %>
+                    
+                    <div class="image-preview" id="imagePreview"></div>
+                </div>
+                
                 <button class="submit-btn" type="submit">Update knife</button>
             </form>
         </div>
     </main>
+
+     <script>
+        // Image preview functionality
+        document.getElementById('image').addEventListener('change', function(e) {
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = '';
+            
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    preview.appendChild(img);
+                }
+                
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    </script>
+
 </body>
 </html>

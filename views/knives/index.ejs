@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +26,7 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 1rem 2rem;
-            
+
             position: sticky;
             top: 0;
             z-index: 100;
@@ -70,15 +71,16 @@
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            
+
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
         }
 
-       
 
-        .search-form, .category-form {
+
+        .search-form,
+        .category-form {
             margin-bottom: 1.5rem;
         }
 
@@ -95,7 +97,8 @@
             font-size: 1rem;
         }
 
-        input, select {
+        input,
+        select {
             padding: 0.8rem;
             border: 2px solid #e9ecef;
             border-radius: 8px;
@@ -105,7 +108,7 @@
             max-width: 400px;
         }
 
-        
+
 
         /* Buttons */
         .btn {
@@ -114,7 +117,7 @@
             border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
-            
+
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
@@ -124,10 +127,10 @@
         .btn-primary {
             background: linear-gradient(45deg, #e74c3c);
             color: white;
-            
+
         }
 
-        
+
 
         .btn-secondary {
             background: #6c757d;
@@ -135,14 +138,14 @@
             margin-left: 10px;
         }
 
-        
+
 
         .add-knife-btn {
             background: linear-gradient(45deg, #27ae60);
             color: white;
             padding: 1rem 2rem;
             margin-bottom: 2rem;
-            
+
         }
 
         /* Knives List */
@@ -150,7 +153,7 @@
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            
+
         }
 
         .knives-list h2 {
@@ -160,28 +163,55 @@
             font-weight: 600;
         }
 
+        .knife-name {
+            font-weight: 600;
+            text-align: center;
+            width: 300px;
+        }
+
         .knives-grid {
             list-style: none;
+            
+            
         }
 
         .knife-item {
-            padding: 1rem;
+            padding: 0.5rem;
             border: 1px solid #e9ecef;
             border-radius: 8px;
             margin-bottom: 0.5rem;
-           
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
         }
+
+
 
 
         .knife-link {
             text-decoration: none;
             color: #2c3e50;
             font-weight: 500;
-            display: block;
+            
+            gap: 1rem;
+            
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .knife-thumbnail {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 2px solid #e9ecef;
             
         }
 
-       
+        
+
+        
 
         .empty-state {
             text-align: center;
@@ -189,65 +219,77 @@
             color: #6c757d;
             font-style: italic;
         }
-
-        
     </style>
 </head>
+
 <body>
-
     <%- include('../partials/_navbar.ejs') %>
-    
-    <div class="container">
-        <header class="page-header">
-            <h1 class="page-title">My knives</h1>
-        </header>
 
-        <section class="filter-section">
-            <form class="search-form" action="/users/<%= user._id %>/knives" method="GET">
-                <div class="form-group">
-                    <label for="search">Search knives:</label>
-                    <input type="text" id="search" name="search" placeholder="Enter knife name..." value="<%= searchTerm %>">
-                </div>
-                <button class="btn btn-primary" type="submit">Search</button>
-                <% if (searchTerm) { %>
-                    <a class="btn btn-secondary" href="/users/<%= user._id %>/knives">Clear search</a>
-                <% } %>
-            </form>
+        <div class="container">
+            <header class="page-header">
+                <h1 class="page-title">My knives</h1>
+            </header>
 
-            <form class="category-form" action="/users/<%= user._id %>/knives" method="GET">
-                <div class="form-group">
-                    <label for="category">Choose a category:</label>
-                    <select name="category" id="category" onchange="this.form.submit()">
-                        <option value="all" <%= selectedCategory === 'all' ? 'selected' : '' %>>All knives</option>
-                        <option value="combat-knife" <%= selectedCategory === 'combat-knife' ? 'selected' : '' %>>Combat knives</option>
-                        <option value="kitchen-knife" <%= selectedCategory === 'kitchen-knife' ? 'selected' : '' %>>Kitchen knives</option>
-                        <option value="survival-knife" <%= selectedCategory === 'survival-knife' ? 'selected' : '' %>>Survival knives</option>
-                        <option value="throwing-knife" <%= selectedCategory === 'throwing-knife' ? 'selected' : '' %>>Throwing knives</option>
-                        <option value="automatic-knife" <%= selectedCategory === 'automatic-knife' ? 'selected' : '' %>>Automatic knives</option>
-                        <option value="hunting-knife" <%= selectedCategory === 'hunting-knife' ? 'selected' : '' %>>Hunting knives</option>
-                    </select>
-                </div>
-            </form>
-        </section>
+            <section class="filter-section">
+                <form class="search-form" action="/users/<%= user._id %>/knives" method="GET">
+                    <div class="form-group">
+                        <label for="search">Search knives:</label>
+                        <input type="text" id="search" name="search" placeholder="Enter knife name..."
+                            value="<%= searchTerm %>">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Search</button>
+                    <% if (searchTerm) { %>
+                        <a class="btn btn-secondary" href="/users/<%= user._id %>/knives">Clear search</a>
+                        <% } %>
+                </form>
 
-        <a class="btn add-knife-btn" href="/users/<%=user._id%>/knives/new">Add a knife</a>
+                <form class="category-form" action="/users/<%= user._id %>/knives" method="GET">
+                    <div class="form-group">
+                        <label for="category">Choose a category:</label>
+                        <select name="category" id="category" onchange="this.form.submit()">
+                            <option value="all" <%=selectedCategory==='all' ? 'selected' : '' %>>All knives</option>
+                            <option value="combat-knife" <%=selectedCategory==='combat-knife' ? 'selected' : '' %>
+                                >Combat knives</option>
+                            <option value="kitchen-knife" <%=selectedCategory==='kitchen-knife' ? 'selected' : '' %>
+                                >Kitchen knives</option>
+                            <option value="survival-knife" <%=selectedCategory==='survival-knife' ? 'selected' : '' %>
+                                >Survival knives</option>
+                            <option value="throwing-knife" <%=selectedCategory==='throwing-knife' ? 'selected' : '' %>
+                                >Throwing knives</option>
+                            <option value="automatic-knife" <%=selectedCategory==='automatic-knife' ? 'selected' : '' %>
+                                >Automatic knives</option>
+                            <option value="hunting-knife" <%=selectedCategory==='hunting-knife' ? 'selected' : '' %>
+                                >Hunting knives</option>
+                        </select>
+                    </div>
+                </form>
+            </section>
 
-        <section class="knives-list">
-            <h2>Your Knife Collection</h2>
-            <ul class="knives-grid">
-                <% knife.forEach((knife)=> { %>
-                    <li class="knife-item"> 
-                        <a class="knife-link" href="/users/<%= user._id %>/knives/<%= knife._id %>"> 
-                            <%= knife.name %> 
-                        </a> 
-                    </li>
-                <% }) %>
-            </ul>
+            <a class="btn add-knife-btn" href="/users/<%=user._id%>/knives/new">Add a knife</a>
 
-            <% if (knife.length === 0) { %>
-                <p class="empty-state">No knives found in this category.</p>
-            <% } %>
-        </section>
-    </div>
+            <section class="knives-list">
+                <h2>Your Knife Collection</h2>
+                <ul class="knives-grid">
+                    <% knife.forEach((knife)=> { %>
+                        <li class="knife-item">
+                            <a class="knife-link" href="/users/<%= user._id %>/knives/<%= knife._id %>">
+                                <% if (knife.image) { %>
+                                    <img src="<%= knife.image %>" alt="<%= knife.name %>" class="knife-thumbnail" />
+
+                                    <% } %>
+                                        <div class="knife-name">
+                                            <%= knife.name %>
+                                        </div>
+                            </a>
+                        </li>
+                        <% }) %>
+                </ul>
+
+                <% if (knife.length===0) { %>
+                    <p class="empty-state">No knives found in this category.</p>
+                    <% } %>
+            </section>
+        </div>
 </body>
+
 </html>

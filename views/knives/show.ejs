@@ -123,6 +123,28 @@
             border-top: 1px solid #e9ecef;
         }
 
+        .knife-image {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .knife-image img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .no-image {
+            text-align: center;
+            color: #6c757d;
+            font-style: italic;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px dashed #dee2e6;
+        }
+
         /* Button Styles */
         .btn {
             padding: 0.8rem 1.5rem;
@@ -162,6 +184,16 @@
     <main>
         <div class="knife-container">
             <h1 class="knife-title"><%= knife.name %></h1>
+
+            <div class="knife-image">
+                <% if (knife.image) { %>
+                    <img src="<%= knife.image %>" alt="<%= knife.name %>" />
+                <% } else { %>
+                    <div class="no-image">
+                        No image available for this knife
+                    </div>
+                <% } %>
+            </div>
 
             <section class="details-section">
                 <div class="detail-item">
