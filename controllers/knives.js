@@ -50,6 +50,7 @@ router.get('/new', async (req, res) => {
 
 router.post('/', upload.single('image'), async(req, res) => {
     try {
+        
         const currentUser = await User.findById(req.session.user._id);
         
         const knifeData = {
