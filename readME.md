@@ -8,6 +8,10 @@ A comprehensive web application for knife enthusiasts, collectors, and professio
 
 BladeVault is a full-stack web application built with Node.js, Express, and MongoDB that allows users to create a digital inventory of their knife collection. Whether you're a professional chef, outdoor enthusiast, tactical specialist, or passionate collector, this app provides an elegant solution to track and showcase your blades.
 
+### Screenshot
+
+![ss](https://i.imgur.com/O4WCBmX.jpeg)
+
 
 ### User Authentication
 - Secure user registration and login system
